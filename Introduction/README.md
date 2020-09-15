@@ -3,22 +3,22 @@
 This section talks about the need for a formal way to describe a planning model and various ways to achieve the given tasl
 
 **Table of contents**
-* [Planning]()
-* [Docking Example]()
-* [Planning Models]()
-* [Underlying Assumptions]()
-* [Various approaches]()
-* [Further Reading]()
+* [Planning](https://github.com/MuvvalaKaran/Learn-PDDL/blob/master/Introduction/README.md#What-is-planinng)
+* [Docking Example](https://github.com/MuvvalaKaran/Learn-PDDL/blob/master/Introduction/README.md#Robot-Dockers---an-example)
+* [Planning Models](https://github.com/MuvvalaKaran/Learn-PDDL/blob/master/Introduction/README.md#The-planning-model)
+* [Underlying Assumptions](https://github.com/MuvvalaKaran/Learn-PDDL/blob/master/Introduction/README.md#Model-assumptions)
+* [Various approaches](https://github.com/MuvvalaKaran/Learn-PDDL/blob/master/Introduction/README.md#A-set-of-techniques)
+* [Further Reading](https://github.com/MuvvalaKaran/Learn-PDDL/blob/master/Introduction/README.md#References)
 
 Note : This section is borrowed from [1] with slight tweaks!
 
 # What is planning?
-![intro_image](/images/intro_image.png)
+![intro_image](images/intro_image.png)
 
 "Planning is a discipline of Artificial Intelligence that aims at the development of generic algorithms allowing autonomous systems to choose and organize their actions to achieve a goal by anticipating their effects (Ghallab, M. and al., 2004)"
 
 ## Robot Dockers - an example
-![docker_gif](/gifs/example_docker.gif)
+![docker_gif](gifs/example_docker.gif)
 
 Imagine a system where robots have to transport containers and store them. In this system, every event and action could be predefined and hard-coded but this approach has many shortcomings: complexity, combinatory explosion of the possible scenarios, vulnerability to failures and unexpected events etc.
 
@@ -28,7 +28,8 @@ Another approach is to bet on autonomy technologies such as AI planning and let 
 
 
 ## The planning model
-![planning_model](/images/planinng_model.png)
+![planning_model](images/planning_model.png)
+
 The conceptual model of planning is made of three components:
 
 * A state transition system that models the evolution of the environment,
