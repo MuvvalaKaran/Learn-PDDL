@@ -3,11 +3,11 @@
 This section describes pddl in detail and discusses the format for writing a pair of pddl file - Domain file and problem file. I then discuss Syntax of these files and go over some examples for better understanding.
 
 **Table of Contents**
-* [How to write a Domain Definition file]()
-* [How to write a Problem Definition file]()
-* [Syntax]()
-* [Examples]()
-* [Further Reading]()
+* [How to write a Domain Definition file](https://github.com/MuvvalaKaran/Learn-PDDL/tree/master/pddl#Domain-definition)
+* [How to write a Problem Definition file](https://github.com/MuvvalaKaran/Learn-PDDL/tree/master/pddl#Problem-definition)
+* [Syntax](https://github.com/MuvvalaKaran/Learn-PDDL/tree/master/pddl#Syntax)
+* [Examples](https://github.com/MuvvalaKaran/Learn-PDDL/tree/master/pddl#Examples)
+* [Further Reading](https://github.com/MuvvalaKaran/Learn-PDDL/tree/master/pddl#Further-Reading)
 
 ## Format
 
@@ -140,11 +140,11 @@ Because PDDL is a very general language and most planners support only a subset,
 
 4. `adl`: Means that the domain uses some or all of ADL (i.e. disjunctions and quantifiers in preconditions and goals, quantified and conditional effects).
 
-We write it as (`:requirements` `:strips` `:typing`). Refer to the [Format’s]() domain definition section.
+We write it as (`:requirements` `:strips` `:typing`). Refer to the [Format’s](https://github.com/MuvvalaKaran/Learn-PDDL/tree/master/pddl#Format) domain definition section.
 
 ### Typing
 
-Types are like “variable types” in coding. These can be inherited as well, as can be seen in the [arch example]() in the examples section. If types are to be used in a domain, the domain should declare the requirement `:typing` as in [Format’s]() domain definition section.
+Types are like “variable types” in coding. These can be inherited as well, as can be seen in the [arch example](https://github.com/MuvvalaKaran/Learn-PDDL/tree/master/pddl#Personal-Example) in the examples section. If types are to be used in a domain, the domain should declare the requirement `:typing` as in [Format’s](https://github.com/MuvvalaKaran/Learn-PDDL/tree/master/pddl#Format) domain definition section.
 
 Type names have to be declared before they are used (i.e usually before `:predicates` declaration). This is done with the declaration
 
@@ -183,26 +183,30 @@ All parts of an action definition except the name are, according to the PDDL spe
 
 In a STRIPS domain, a precondition formula may be:
 
-	* An atomic formula:
-	`(PREDICATE_NAME ARG1 ... ARG_N)`
+* An atomic formula:
+  ```
+  (PREDICATE_NAME ARG1 ... ARG_N)
+  ```
 
 The predicate arguments must be parameters of the action (or constants declared in the domain, if the domain has constants).
 
-	* A conjunction of atomic formulas:
-	`(and ATOM1 ... ATOM_N)`
+* A conjunction of atomic formulas:
+  ```
+  (and ATOM1 ... ATOM_N)
+  ```
 
 If the domain uses `:equality`, an atomic formula may also be of the form `(= ARG1 ARG2)`. Many planners that support equality also allow negated equality, which is written `(not (= ARG1 ARG2))`, even if they do not allow negation in any other part of the definition.
 
 In an ADL domain, a precondition may in addition be:
 
-	* A general negation, conjunction or disjunction:
+* A general negation, conjunction or disjunction:
 	```
 	(not CONDITION_FORMULA)
 	(and CONDITION_FORMULA1 ... CONDITION_FORMULA_N)
 	(or CONDITION_FORMULA1 ... CONDITION_FORMULA_N)
 	```
 
-	* A (universally) quantified formula:
+* A (universally) quantified formula:
 	```
 	(forall (?V1 ?V2 ...) CONDITION_FORMULA)
 	(exists (?V1 ?V2 ...) CONDITION_FORMULA)
@@ -217,24 +221,34 @@ In PDDL, the effects of an action are not explicitly divided into `adds` and `de
 
 In a STRIPS domain, an effect formula may consist of:
 
-	* `(PREDICATE_NAME ARG1 ... ARG_N)`
-	The predicate arguments must be parameters of the action (or constants declared in the domain, if the domain has constants).
+* The predicate arguments must be parameters of the action (or constants declared in the domain, if the domain has constants). 
+	```
+	(PREDICATE_NAME ARG1 ... ARG_N)
+	```
 
-	* A deleted atom:
-	`(not (PREDICATE_NAME ARG1 ... ARG_N))`
+* A deleted atom:
+	```
+	(not (PREDICATE_NAME ARG1 ... ARG_N))
+	```
 
-	* A conjunction of atomic effects:
-	`(and ATOM1 ... ATOM_N)`
+* A conjunction of atomic effects:
+	```
+	(and ATOM1 ... ATOM_N)
+	```
 
 In an ADL domain, an effect formula may in addition contain:
 
-	* A conditional effect:
-	`(when CONDITION_FORMULA EFFECT_FORMULA)`
+* A conditional effect:
+	```
+	(when CONDITION_FORMULA EFFECT_FORMULA)
+	```
 
 	The interpretation is that the specified effect takes place only if the specified condition formula is true in the state where the action is executed. Conditional effects are usually placed within quantifiers.
 
-	* A universally quantified formula:
-	`(forall (?V1 ?V2 ...) EFFECT_FORMULA)`
+* A universally quantified formula:
+	```
+	(forall (?V1 ?V2 ...) EFFECT_FORMULA)
+	```
 
 ## Examples
 
@@ -325,7 +339,7 @@ Objects: The two rooms, four balls and two robot arms.
 
 [1] explains all the main components of this example.
 
-#### Perosnal Example
+#### Personal Example
 
 Domain File:
 
@@ -395,32 +409,32 @@ Problem File:
 
 The domain file is written in ADL format. The name of the problem domain is `arch`. Which defines the following types : 
 
-	1. `Generalized_loc`
-	2. `Location` and `object` are inherited from `generalized_loc`
-	3. `Support` is inherited from `location`
+  1. `Generalized_loc`
+  2. `Location` and `object` are inherited from `generalized_loc`
+  3. `Support` is inherited from `location`
 
 `Else, ee, and l0` are constants of type `location`. We then define two function :
 
-	1. `at`- with return type `location` and takes in argument of type `object`: a function to get the location of an object
-	2. `Robot-at` - with return type `generalized_loc` and does not take any argument: a function to determine the current location of the robot 
+  1. `at`- with return type `location` and takes in argument of type `object`: a function to get the location of an object
+  2. `Robot-at` - with return type `generalized_loc` and does not take any argument: a function to determine the current location of the robot 
 
 We then define 5 different actions:
 
-	1. Move : takes in two arguments of type object and support. 
-		* The precondition is the location of the object and the ee value is not the same and the ee location and the support location should not be the same and when the condition (support location is not equal to ee location) is true then for all objects assert that location of the objects is not equal to support location. 
-		* The effect : the location of the object and the support should be same
-	2. Grasp : takes in two arguments of type object and location
-		* The precondition is that the location of all the other objects should not be equal to the given location of the ee.
-		* The Effect : the location of the object and the ee location should be equal and location of the robot should be the same as the location given.  
-	3. Place : takes in two arguments of type object and location
-		* The precondition is that for all the other objects the location of the objects should not be equal to the given location and the location of the object should be the same as the ee location and the robot should be at the given location. 
-		* The Effect : the location of the object and the given location should be same and the robot should be at the given object location.
-	4. Transit : takes in an argument of type object.
-		* The precondition is that for all the other objects the location of the objects should not be equal to ee location. 
-		* The Effect : location of the robot and that of the given object should be same
-	5. Transfer: takes in an arguments of type location
-		* The precondition is that the given location and the ee location or the else location should not be the same. And there exist other object location such that their location should be equal to the ee location. 
-		* The Effect : The location of the robot should be the same as the given location.
+  1. Move : takes in two arguments of type object and support. 
+        * The precondition is the location of the object and the ee value is not the same and the ee location and the support location should not be the same and when the condition (support location is not equal to ee location) is true then for all objects assert that location of the objects is not equal to support location. 
+        * The effect : the location of the object and the support should be same
+2. Grasp : takes in two arguments of type object and location
+	* The precondition is that the location of all the other objects should not be equal to the given location of the ee.
+	* The Effect : the location of the object and the ee location should be equal and location of the robot should be the same as the location given.  
+3. Place : takes in two arguments of type object and location
+	* The precondition is that for all the other objects the location of the objects should not be equal to the given location and the location of the object should be the same as the ee location and the robot should be at the given location. 
+	* The Effect : the location of the object and the given location should be same and the robot should be at the given object location.
+4. Transit : takes in an argument of type object.
+	* The precondition is that for all the other objects the location of the objects should not be equal to ee location. 
+	* The Effect : location of the robot and that of the given object should be same
+5. Transfer: takes in an arguments of type location
+	* The precondition is that the given location and the ee location or the else location should not be the same. And there exist other object location such that their location should be equal to the ee location. 
+	* The Effect : The location of the robot should be the same as the given location.
 
 
 The problem file instantiates the domain file with start and goal state. The name of the problem here is `manip_problem` defined over the domain `arch`.
@@ -440,4 +454,5 @@ The goal is that eventually there exists an object at location `l0` and only aft
 Please refer to these links that I found useful to make these notes. Thanks.
 
 > [2] http://users.cecs.anu.edu.au/~patrik/pddlman/writing.html
+
 > [3] http://pddl4j.imag.fr/repository/wiki/BNF-PDDL-3.1.pdf
